@@ -14,10 +14,23 @@ def main():
         if request.lower() == "exit":
             break
 
-        result = agent.process_request(request)
+        products = agent.process_request(request)
 
         print()
-        print(result.model_dump_json(indent=4))
+        print("========== RESULT ==========")
+
+        if not products:
+            print("Nothing found.")
+            continue
+
+        for index, product in enumerate(products, start=1):
+
+            print(f"{index}. {product.title}")
+            print(f"   Price : {product.price}")
+            print(f"   Shop  : {product.shop}")
+            print()
+
+        print("============================")
 
 
 if __name__ == "__main__":
