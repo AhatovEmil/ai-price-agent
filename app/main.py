@@ -2,11 +2,22 @@ from agent import PriceAgent
 
 
 def main():
+
     agent = PriceAgent()
 
-    print("=" * 40)
     print(agent.greet())
-    print("=" * 40)
+
+    while True:
+
+        request = input("\n> ")
+
+        if request.lower() == "exit":
+            break
+
+        result = agent.process_request(request)
+
+        print()
+        print(result.model_dump_json(indent=4))
 
 
 if __name__ == "__main__":
